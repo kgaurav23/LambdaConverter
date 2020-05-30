@@ -1,8 +1,8 @@
 package com.kg.lambdaconverter
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,30 +16,38 @@ class MainActivity : AppCompatActivity() {
         val converterMilesToKms: (Double) -> Double = { it * 1.6}
         val converterCelciusToFarenheit: (Double) -> Double = { it * 1.8 + 32 }
 
-        btnCelToFar.setOnClickListener {
-            val inputValue = etInput.text.toString()
-            if(inputValue.isBlank()) {
-                showToast("Please enter some value")
-                return@setOnClickListener
-            }
+        celciusToFahrenheitButtonClick(converterCelciusToFarenheit)
 
-            val result = convert(etInput.text.toString().toDouble(), converterCelciusToFarenheit)
-            val message = "$inputValue celcius is equal to $result fahrenheit"
-            showToast(message)
+        milesToKmButtonClick(converterMilesToKms)
+    }
 
-            tvFinalValue.visibility = View.VISIBLE
-            tvFinalValue.text = "Result: $message"
-        }
-
+    private fun milesToKmButtonClick(converterMilesToKms: (Double) -> Double) {
         btnMilesToKm.setOnClickListener {
             val inputValue = etInput.text.toString()
-            if(inputValue.isBlank()) {
+            if (inputValue.isBlank()) {
                 showToast("Please enter some value")
                 return@setOnClickListener
             }
 
             val result = convert(etInput.text.toString().toDouble(), converterMilesToKms)
             val message = "$inputValue miles is equal to $result kms"
+            showToast(message)
+
+            tvFinalValue.visibility = View.VISIBLE
+            tvFinalValue.text = "Result: $message"
+        }
+    }
+
+    private fun celciusToFahrenheitButtonClick(converterCelciusToFarenheit: (Double) -> Double) {
+        btnCelToFar.setOnClickListener {
+            val inputValue = etInput.text.toString()
+            if (inputValue.isBlank()) {
+                showToast("Please enter some value")
+                return@setOnClickListener
+            }
+
+            val result = convert(etInput.text.toString().toDouble(), converterCelciusToFarenheit)
+            val message = "$inputValue celcius is equal to $result fahrenheit"
             showToast(message)
 
             tvFinalValue.visibility = View.VISIBLE
