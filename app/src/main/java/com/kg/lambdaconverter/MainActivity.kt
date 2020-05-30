@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
         tvFinalValue.visibility = View.GONE
 
         val converterMilesToKms: (Double) -> Double = { it * 1.6}
-        val converterCelciusToFarenheit: (Double) -> Double = { it * 1.8 + 32 }
+        val converterCelciusToFahrenheit: (Double) -> Double = { it * 1.8 + 32 }
 
-        celciusToFahrenheitButtonClick(converterCelciusToFarenheit)
+        celciusToFahrenheitButtonClick(converterCelciusToFahrenheit)
 
         milesToKmButtonClick(converterMilesToKms)
     }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun celciusToFahrenheitButtonClick(converterCelciusToFarenheit: (Double) -> Double) {
+    private fun celciusToFahrenheitButtonClick(converterCelciusToFahrenheit: (Double) -> Double) {
         btnCelToFar.setOnClickListener {
             val inputValue = etInput.text.toString()
             if (inputValue.isBlank()) {
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val result = convert(etInput.text.toString().toDouble(), converterCelciusToFarenheit)
+            val result = convert(etInput.text.toString().toDouble(), converterCelciusToFahrenheit)
             val message = "$inputValue celcius is equal to $result fahrenheit"
             showToast(message)
 
